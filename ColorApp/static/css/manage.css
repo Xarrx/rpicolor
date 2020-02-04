@@ -1,0 +1,149 @@
+.color-preview {
+}
+
+#preview {
+  border-top-left-radius: .25rem;
+  border-bottom-left-radius: .25rem;
+}
+
+#preview-old {
+  border-top-right-radius: .25rem;
+  border-bottom-right-radius: .25rem;
+}
+
+#saved-colors-header {
+    cursor: pointer;
+}
+
+
+a.text-link, a.text-link:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+.border-round {
+    border-radius: .25rem;
+}
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: var(--gray);
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #007bff;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #007bff;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.preview-box {
+  width: 250px;
+  height: 250px;
+}
+
+.card-no-border {
+  border: none;
+  border-radius: 0rem;
+}
+
+.card-preview-row {
+  flex-direction: row;
+  min-width: 291px;
+  min-height: 150px;
+}
+
+.preview-left, .preview-right {
+  width: 50%;
+}
+
+.center-the-damn-switch {
+  text-align: center;
+}
+
+.card, .jumbotron{
+  background-color: var(--gray);
+  color: var(--light);
+}
+
+.card-header {
+  background-color: darkgray;
+  color: var(--dark);
+}
+
+body {
+  background-color: var(--gray-dark);
+}
+
+input[type=text], input[type=number]{
+  background-color: lightgray;
+  border-color: lightgray;
+  color: var(--dark);
+}
+
+input[type=text]:focus, input[type=number]:focus {
+  background-color: var(--light);
+  color: var(--dark);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.anim-bg /*, #top, body */{
+  background-image: url("resource/anim.gif");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
