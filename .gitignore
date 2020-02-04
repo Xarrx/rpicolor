@@ -1,2 +1,5 @@
-
+db.sqlite3
 ColorApp/static/css/resource/anim.gif
+virtualenv
+__pycache__
+*.pyc
