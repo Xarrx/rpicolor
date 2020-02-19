@@ -3,3 +3,5 @@ ColorApp/static/css/resource/anim.gif
 virtualenv
 __pycache__
 *.pyc
+ColorApp/migrations
+ColorApp/__pycache__
