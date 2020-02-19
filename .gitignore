@@ -1,14 +1,13 @@
 # DB files
-db.sqlite3
-*.sqlite3
+**/*.sqlite3
 
 # virtual environment
-virtualenv
 venv
-__pycache__
-*.pyc
-ColorApp/migrations
-ColorApp/__pycache__
+
+# Compiled files
+**/__pycache__
+**/*.pyc
+**/migrations
 
 # Other
 ColorApp/static/css/resource/anim.gif
