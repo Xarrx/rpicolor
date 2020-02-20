@@ -1,0 +1,169 @@
+{% extends "base.html" %}
+{% block title %}Color Manager{% endblock %}
+{% block head %}
+    {% load static %}
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.0/js.cookie.js"></script>
+
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous"/>
+    <link rel="stylesheet" href="{% static "css/manage.css" %}"/>
+{% endblock %}
+{% block content %}
+    <div id="top" class="jumbotron jumbotron-fluid text-center mb-0">
+        <div class="container">
+            <h1 class="display-4">Color Manager</h1>
+            <p class="lead">Provides tools for controlling the power and color of a connected LED strip.</p>
+        </div>
+
+    </div>
+    {% load static %}
+    <div class="container">
+
+        <!-- alerts row -->
+        <div class="row">
+            <div class="col-sm-12 mb-3" id="alerts"></div>
+        </div>
+
+        <!-- control row -->
+        <div class="row">
+            <div class="col-sm-12 mb-3">
+                <div id="controls" class="form-horizontal card">
+                    <h6 class="card-header">Set/Save Colors</h6>
+                    <div class="card-body row">
+
+                        <div class="col">
+                            <div class="form-group row">
+                                <div class="col-sm-auto">
+                                    <input class="form-control" id="search" type="text" maxlength="256"
+                                           placeholder="Search"/>
+                                </div>
+
+                                <div class="col-sm-auto">
+                                    <div id="preview-search" class="align-items-center border-round">
+                                        <span class="card-text hex-code btn">#------</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-form-label col-sm-2 text-nowrap" for="name">Name:</label>
+                                <div id="name-row" class="col-auto">
+                                    <input class="form-control" id="name" type="text" maxlength="256" placeholder="Name"/>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-form-label col-sm-2 text-nowrap" for="red">Red:</label>
+                                <div id="red-row" class="col-auto">
+                                    <input class="form-control" id="red" type="number" min="0" max="255" value="0" required/>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-form-label col-sm-2 text-nowrap" for="green">Green:</label>
+                                <div id="green-row" class="col-auto">
+                                    <input class="form-control" id="green" type="number" min="0" max="255" value="0" required/>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-form-label col-sm-2 text-nowrap" for="blue">Blue:</label>
+                                <div id="blue-row" class="col-auto">
+                                    <input class="form-control" id="blue" type="number" min="0" max="255" value="0" required/>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-form-label col-sm-2 text-nowrap" for="brightness">Dim:</label>
+                                <div id="brightness-row" class="col-auto">
+                                    <input class="form-control" id="brightness" type="number" min="0" max="255" value="0" required/>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-auto">
+                                    <span id="color-set" class="btn btn-primary">Apply</span>
+                                    <span id="color-save" class="btn btn-primary">Save</span>
+                                    <span id="color-save-as" class="btn btn-primary">Save As</span>
+                                    <span id="color-delete" class="btn btn-danger">Delete</span>
+                                    <span id="color-reset" class="btn btn-primary">Reset</span>
+                                    <input type="hidden" id="id"/>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="row mb-3 justify-content-center">
+                                <div class="col-sm-auto">
+                                    <div class="card  card-no-border card-preview-row">
+
+                                        <div id="preview" class="card-body preview-left">
+                                            <h6 class="card-title">Color Preview</h6>
+                                            <div class="card-text hex-code"></div>
+                                        </div>
+
+                                        <div id="preview-old" class="card-body preview-right">
+                                            <h6 class="card-title">Loaded Color</h6>
+                                            <div class="card-text hex-code"></div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <div class="row justify-content-center">
+                                <div class="col-sm-auto">
+                                    <div class="card card-no-border">
+                                        <div class="card-body align-items-center center-the-damn-switch">
+                                            <h6 class="card-title">LED Strip Power</h6>
+                                            <!--<span id="power-toggle" class="btn btn-primary"></span>-->
+                                            <label class="switch">
+                                                <input id="power-toggle" type="checkbox"/>
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="card-body row justify-content-center emu-link-container">
+                        <div class="col-sm-auto">
+                            <a href="/strip/" id="led-link" class="card-link text-light" target="popup">Emulated LED Strip</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- saved colors row -->
+        <div class="row">
+            <div id="saved-colors-parent" class="col-sm-12 mb-3">
+                <div class="card h-100">
+                    <div id="saved-colors-header" class="card-header collapsed"
+                         data-toggle="collapse"
+                         data-target="#saved-colors"
+                         aria-expanded="true"
+                         aria-controls="saved-colors">
+                        <h6 class="mb-0">Saved Colors</h6>
+                    </div>
+                    <div id="saved-colors" class="card-body collapse"
+                         aria-labelledby="saved-colors-header"
+                         data-parent="#saved-colors-parent"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>-->
+    <script src="https://unpkg.com/tooltip.js/dist/umd/tooltip.min.js"></script>
+    <script src="https://unpkg.com/popper.js/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+    <script src="{% static "js/manage.js" %}"></script>
+{% endblock %}
