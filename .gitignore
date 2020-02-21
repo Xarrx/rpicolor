@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Migrations
+ColorApp/migrations/*
+!ColorApp/migrations/__init__.py
