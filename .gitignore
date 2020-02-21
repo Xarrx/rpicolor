@@ -128,5 +128,6 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# migrations (Default naming convention)
-ColorApp/migrations/[0-9][0-9][0-9][0-9]_.*
+# Migrations
+ColorApp/migrations/*
+!ColorApp/migrations/__init__.py
