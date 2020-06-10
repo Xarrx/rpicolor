@@ -131,3 +131,7 @@ dmypy.json
 # Migrations
 ColorApp/migrations/*
 !ColorApp/migrations/__init__.py
+
+# Misc
+ColorApp/static/css/resource/anim.gif
+

@@ -32,7 +32,7 @@ DEBUG = True
 #
 # Example:
 # ALLOWED_HOSTS = ['192.168.1.144', 'localhost']
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', 'rpi-color']
 
 
 # Application definition
@@ -65,7 +65,7 @@ ROOT_URLCONF = 'pcs.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [ '/home/pi/rpicolor/templates/' ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -127,5 +127,6 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
-
 STATIC_URL = '/static/'
+# STATIC_URL = os.path.join( BASE_DIR, 'static/' )
+
