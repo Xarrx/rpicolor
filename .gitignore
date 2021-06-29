@@ -135,3 +135,4 @@ ColorApp/migrations/*
 # Misc
 ColorApp/static/css/resource/anim.gif
 
+pcs/settings.py
